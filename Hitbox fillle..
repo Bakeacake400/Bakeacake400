@@ -1,0 +1,21 @@
+-- Define the hitbox part
+local hitbox = Instance.new("Part")
+hitbox.Size = Vector3.new(5, 5, 5)  -- Adjust size as needed
+hitbox.Anchored = true
+hitbox.CanCollide = false
+hitbox.Position = Vector3.new(0, 10, 0)  -- Position where you want the hitbox
+hitbox.Parent = workspace
+
+-- Function to handle collision
+local function onHit(otherPart)
+    local character = otherPart.Parent
+    local humanoid = character:FindFirstChildOfClass("Humanoid")
+    
+    if humanoid then
+        print("Hit detected with " .. character.Name)
+        -- Add custom behavior here, e.g., apply damage, change status, etc.
+    end
+end
+
+-- Connect the function to the hitbox's Touched event
+hitbox.Touched:Connect(onHit)
